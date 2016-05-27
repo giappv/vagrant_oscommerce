@@ -1,6 +1,8 @@
 from __future__ import with_statement
 from fabric.api import *
 from fabric.contrib.files import exists
+from fabric.operations import local as lrun, run
+from fabric.context_managers import env
 from pprint import pprint
 import os
 import pdb
@@ -10,11 +12,14 @@ oscommerce_version = "2.3.4"
 oscommerce_download_url = "%s%s%s" % ("https://www.oscommerce.com/files/oscommerce-",oscommerce_version,".zip")
 
 root_dir = "/vagrant/htdocs"
-env.hosts = ["192.168.49.49"]
-env.use_sudo = True
-env.user = "vagrant"
-env.group = "vagrant"
 download_path = "/tmp/oscommerce"
+
+@task
+def localhost():
+    env.run = lrun
+    env.hosts = ['localhost']
+    env.use_sudo = True
+    env.password = 'vagrant'
 
 @task
 def execute(*args, **kwargs):
@@ -25,9 +30,9 @@ def execute(*args, **kwargs):
 
 @task
 def init():
-    run("mkdir -p %s" % (download_path))
+    execute("mkdir -p %s" % (download_path))
     with cd(download_path):
-        execute("rm oscommerce*.zip")
+        execute("rm oscommerce*.zip > /dev/null")
         execute("wget %s" % (oscommerce_download_url))
         execute("unzip oscommerce*.zip")
         execute("cp -rf oscommerce*/* %s" % (root_dir))

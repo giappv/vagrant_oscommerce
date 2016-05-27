@@ -1,5 +1,15 @@
-# vagrant_oscommerce
+# Ansible Vagrant & Fabric for OsCommerce
+---
+## Background
 Quickly install oscommerce development environment
+
+## Getting Started
+Download and Install VirtualBox
+Download and Install Vagrant
+
+
+# Provisioning vagrant
+`vagrant up`
 
 ### Enable remote access for root user
 
