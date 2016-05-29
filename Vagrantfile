@@ -36,6 +36,17 @@ Vagrant.configure("2") do |config|
     end
 
     config.vm.box = "ubuntu/trusty64"
+
+    config.hostmanager.enabled = true
+    config.hostmanager.manage_host = true
+    config.hostmanager.manage_guest = true
+    config.hostmanager.ignore_private_ip = false
+    config.hostmanager.include_offline = true
+    config.vm.define 'oscommerce-dev' do |node|
+        node.vm.hostname = 'oscommerce-dev'
+        node.vm.network :private_network, ip: '192.168.49.49'
+        node.hostmanager.aliases = %w(oscommerce.dev www.oscommerce.dev)
+    end
     
     config.vm.network :private_network, ip: "192.168.49.49"
     config.ssh.forward_agent = true

@@ -12,9 +12,9 @@ apache:
     servername: myApp.vb
 mysql:
     install: '1'
-    root_password: root
-    database: guru
-    user: guru
+    root_password: 123456
+    database: osc
+    user: osc
     password: '123456'
     dump: ''
 php:
