@@ -37,7 +37,7 @@ pass: 123456
 root pass: 123456
 ```
 
-Visit [http://oscommerce.dev][oscommerce.dev] to start installing oscommerce
+Visit [oscommerce.dev](http://oscommerce.dev) to start installing oscommerce
 
 
 ## Enable remote access for root user
